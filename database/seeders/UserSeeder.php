@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     {
         collect([
             [
-                'name' => "Rochmad Nurul Fahmi",
-                'email' => "rochmadnf@gmail.com",
+                'name' => "Rochmad Tamvan",
+                'email' => "rochmad@example.com",
                 'password' => bcrypt('password'),
             ],
             [
@@ -26,6 +26,9 @@ class UserSeeder extends Seeder
                 'email' => "fulan@example.com",
                 'password' => bcrypt('password'),
             ],
-        ])->each(fn ($u) => User::create($u));
+        ])->each(function ($u) {
+            $user = User::create($u);
+            $user->assignRole('admin');
+        });
     }
 }
