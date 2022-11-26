@@ -11,5 +11,10 @@ Route::post('/login', LoginController::class);
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', fn (Request $request) => new UserResource($request->user()));
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/myrole', function () {
+            return response()->json(['message' => "You're Admin 😁"], 200);
+        });
+    });
     Route::post('/logout', LogoutController::class);
 });

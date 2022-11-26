@@ -34,6 +34,7 @@ class RegisterController extends Controller
         ]);
 
         if ($user) {
+            $user->assignRole('guest');
             return response()->json(['success' => true, 'user' => $user], Response::HTTP_CREATED);
         }
 
